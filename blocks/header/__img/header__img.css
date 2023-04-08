@@ -1,0 +1,12 @@
+.header__img {
+  background-image: url('../../../img/Vector.png');
+  align-self: start;
+  width: 142px;
+  height: 33px;
+}
+
+@media screen and (max-width: 578px) {
+  .header__img {
+    margin-left: 27px;
+  }
+}

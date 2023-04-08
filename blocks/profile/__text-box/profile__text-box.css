@@ -1,0 +1,13 @@
+.profile__text-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+@media screen and (max-width: 578px) {
+  .profile__text-box {
+    align-items: center;
+    gap: 14px;
+  }
+}
