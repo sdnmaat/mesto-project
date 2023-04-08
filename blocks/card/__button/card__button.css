@@ -1,14 +1,15 @@
-.cards__button {
+.card__button {
   background-color: #fff;
   border: 0;
   width: 22px;
   height: 22px;
   opacity: 1;
   transition: opacity 0.3s linear;
-  margin-right: 15px;
+  margin-right: 30px;
   margin-top: 5px;
+  cursor: pointer;
 }
 
-.cards__button:hover {
-  opacity: 0.6;
+.card__button:hover {
+  opacity: 0.5;
 }

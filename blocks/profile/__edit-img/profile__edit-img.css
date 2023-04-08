@@ -3,3 +3,10 @@
   height: 10px;
   margin: auto;
 }
+
+@media screen and (max-width: 578px) {
+  .profile__edit-img {
+    width: 7px;
+    height: 7px;
+  }
+}

@@ -1,6 +1,5 @@
-.cards__element {
+.card {
   width: 282px;
-  min-height: 361px;
   background-color: #fff;
   display: flex;
   flex-direction: column;

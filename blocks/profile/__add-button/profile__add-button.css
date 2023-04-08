@@ -8,6 +8,7 @@
   background-color: #000;
   opacity: 1;
   transition: opacity 0.3s linear;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {

@@ -14,12 +14,12 @@
 @import url('../blocks/profile/__name/profile__name.css');
 @import url('../blocks/profile/__text-box/profile__text-box.css');
 @import url('../blocks/cards/cards.css');
-@import url('../blocks/cards/__button/cards__button.css');
-@import url('../blocks/cards/__element/cards__element.css');
-@import url('../blocks/cards/__heart/cards__heart.css');
-@import url('../blocks/cards/__img/cards__img.css');
-@import url('../blocks/cards/__text-box/cards__text-box.css');
-@import url('../blocks/cards/__text/cards__text.css');
+@import url('../blocks/card/__button/card__button.css');
+@import url('../blocks/card/card.css');
+@import url('../blocks/card/__heart/card__heart.css');
+@import url('../blocks/card/__img/card__img.css');
+@import url('../blocks/card/__text-box/card__text-box.css');
+@import url('../blocks/card/__text/card__text.css');
 @import url('../blocks/profile/__name-edit/profile__name-edit.css');
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__text/footer__text.css');
@@ -31,3 +31,4 @@
 @import url('../blocks/popup/__text-field/popup__text-field.css');
 @import url('../blocks/popup/__text/popup__text.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
+@import url('../blocks/popup/__close-button/popup__close-button.css');
