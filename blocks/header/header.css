@@ -1,6 +1,19 @@
 .header {
-  width: 100%;
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid rgba(84,84,84, 0.7);
   display: flex;
   margin-top: 45px;
+}
+
+
+@media screen and (max-width: 880px) {
+  .header {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width:578px) {
+  .header {
+    margin: 28px 0 0 0;
+  }
 }

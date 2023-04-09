@@ -7,6 +7,9 @@
   transition: opacity 0.3s linear;
   margin-top: 7px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile__edit-button:hover {
