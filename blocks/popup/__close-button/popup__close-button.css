@@ -7,6 +7,7 @@
   margin-bottom: 381px;
   margin-left: 2px;
   cursor: pointer;
+  margin-top:-32px;
 }
 
 .popup__close-button:hover {
@@ -17,7 +18,6 @@
   .popup__close-button {
     width: 20px;
     height: 20px;
-    top: -30px;
-    left: 255px;
+    margin-top: -20px;
   }
 }
