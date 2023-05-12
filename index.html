@@ -33,60 +33,6 @@
         </button>
       </section>
       <section class="cards">
-        <article class="card">
-          <img src="./img/karachaevsk.png" alt="Карачаевск" class="card__img">
-          <div class="card__text-box">
-            <h2 class="card__text">Карачаево-Черкессия</h2>
-            <button class="card__button" type="button">
-              <img src="./img/heart.svg" alt="сердце" class="card__heart">
-            </button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./img/elbrus.png" alt="Гора Эльбрус" class="card__img">
-          <div class="card__text-box">
-            <h2 class="card__text">Гора Эльбрус</h2>
-            <button class="card__button" type="button">
-              <img src="./img/heart.svg" alt="сердце" class="card__heart">
-            </button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./img/dombay.png" alt="Домбай" class="card__img">
-          <div class="card__text-box">
-            <h2 class="card__text">Домбай</h2>
-            <button class="card__button" type="button">
-              <img src="./img/heart.svg" alt="сердце" class="card__heart">
-            </button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./img/elbrus.png" alt="Гора Эльбрус" class="card__img">
-          <div class="card__text-box">
-            <h2 class="card__text">Гора Эльбрус</h2>
-            <button class="card__button" type="button">
-              <img src="./img/heart.svg" alt="сердце" class="card__heart">
-            </button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./img/dombay.png" alt="Домбай" class="card__img">
-          <div class="card__text-box">
-            <h2 class="card__text">Домбай</h2>
-            <button class="card__button" type="button">
-              <img src="./img/heart.svg" alt="сердце" class="card__heart">
-            </button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./img/karachaevsk.png" alt="Карачаевск" class="card__img">
-          <div class="card__text-box">
-            <h2 class="card__text">Карачаевск</h2>
-            <button class="card__button" type="button">
-              <img src="./img/heart.svg" alt="сердце" class="card__heart">
-            </button>
-          </div>
-        </article>
       </section>
     </main>
     <footer class="footer">
@@ -94,13 +40,13 @@
         &copy; 2023 Mesto Russia
       </p>
     </footer>
-    <section class="popup popup_opened">
+    <section class="popup" id="popup-edit-profile">
       <div class="popup__container">
         <form name="edit-profile">
           <fieldset class="popup__info">
             <h2 class="popup__text">Редактировать профиль</h2>
-            <input type="text" class="popup__text-field" name="profile-name">
-            <input type="text" class="popup__text-field" name="profile-info">
+            <input type="text" class="popup__text-field" name="profile-name" value="">
+            <input type="text" class="popup__text-field" name="profile-info" value="">
             <button class="popup__button" type="submit">
               Сохранить
             </button>
@@ -111,6 +57,47 @@
         </button>
       </div>
     </section>
+    <section class="popup" id="popup-new-place">
+      <div class="popup__container">
+        <form name="new-place">
+          <fieldset class="popup__info">
+            <h2 class="popup__text">Новое место</h2>
+            <input type="text" class="popup__text-field" name="place-name" placeholder="Название">
+            <input type="text" class="popup__text-field" name="place-link" placeholder="Ссылка на картинку">
+            <button class="popup__button" type="submit">
+              Сохранить
+            </button>
+          </fieldset>
+        </form> 
+        <button class="popup__close-button" id="popup-close-button-new-place" type="button">
+          <img src="./img/CloseIcon.svg" alt="крестик" class="popup__icon">
+        </button>
+      </div>
+    </section>
+    <section class="popup" id="popup-picture">
+      <div class="popup__picture-box">
+        <img class="popup__picture" src="" alt="">
+        <button class="popup__close-button-picture" id="popup-close-button-picture" type="button">
+          <img src="./img/CloseIcon.svg" alt="крестик" class="popup__icon">
+        </button>
+        <p class="popup__text-picture"></p>
+      </div>
+    </section>
+    <template id="card-template">
+      <article class="card">
+        <button class="card__delete-button" type="button">
+          <img src="./img/Trash.svg">
+        </button>
+        <img src="" class="card__img" alt="">
+        <div class="card__text-box">
+          <h2 class="card__text"></h2>
+          <button class="card__button" type="button">
+            <div class="card__heart"></div>
+          </button>
+        </div>
+      </article>
+    </template>
   </div>
+  <script src="./page/script.js"></script> 
 </body>
 </html>

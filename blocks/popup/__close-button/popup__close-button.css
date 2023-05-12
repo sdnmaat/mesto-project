@@ -7,9 +7,6 @@
   margin-bottom: 381px;
   margin-left: 2px;
   cursor: pointer;
-  position: absolute;
-  top: -41px;
-  left: 430px;
 }
 
 .popup__close-button:hover {
