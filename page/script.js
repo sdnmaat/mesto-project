@@ -35,20 +35,21 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 } 
-
-popupProfileOpenButton.addEventListener('click', function(evt) {openPopup(popupEdit);});
-
-const popupProfileCloseButton = document.querySelector('#profile-close-button');
-popupProfileCloseButton.addEventListener('click', function(evt) {closePopup(popupEdit);});
-
 const formProfileElement = document.querySelector('[name="edit-profile"]');
 const nameProfileInput= document.querySelector('[name="profile-name"]');
 const profileName = document.querySelector('.profile__name');
-nameProfileInput.value = profileName.innerText;
 
 const jobProfileInput = document.querySelector('[name="profile-info"]');
 const profileInfo = document.querySelector('.profile__info');
-jobProfileInput.value = profileInfo.innerText;
+
+popupProfileOpenButton.addEventListener('click', function(evt) {
+  openPopup(popupEdit);
+  nameProfileInput.value = profileName.innerText;
+  jobProfileInput.value = profileInfo.innerText;
+});
+
+const popupProfileCloseButton = document.querySelector('#profile-close-button');
+popupProfileCloseButton.addEventListener('click', function(evt) {closePopup(popupEdit);});
 
 function submitProfileForm (evt) {
   evt.preventDefault(); 
