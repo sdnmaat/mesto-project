@@ -28,6 +28,9 @@ const initialCards = [
     ];
 
 export const popupPicture = document.querySelector('#popup-picture');
+const fullImg = document.querySelector('.popup__picture');
+const textImg = document.querySelector('.popup__text-picture');
+
 function createCard (name, link) {
 const cardTemplate = document.querySelector('#card-template').content;
 const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -43,10 +46,8 @@ cardElement.querySelector('.card__delete-button').addEventListener('click', func
     cardElementDel.remove();
     });
 cardElement.querySelector('.card__img').addEventListener('click', function(evt) {
-    const fullImg = document.querySelector('.popup__picture');
     fullImg.src = link;
     fullImg.alt = name;
-    const textImg = document.querySelector('.popup__text-picture');
     textImg.textContent = name;
     openPopup(popupPicture);
     });
@@ -69,6 +70,5 @@ export function submitFormPlace (evt) {
     evt.preventDefault();
     renderCard(createCard(placeNameInput.value,linkInput.value),cardContainer);
     closePopup(popupNewPlace);
-    placeNameInput.value='';
-    linkInput.value='';
+    evt.target.reset()
     }

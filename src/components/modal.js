@@ -7,16 +7,11 @@ export function closePopup(popup) {
   popup.classList.remove('popup_opened');
 } 
 
-export function closeEsc(popup, evt) {
+export function closeEsc(evt) {
     if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup__opened');
     closePopup(popup);
     }
-};
-
-export function closeOverlay(popup, evt) {
-  if (evt.currentTarget === evt.target) {
-    closePopup(popup)
-  }
 };
 
 export const jobProfileInput = document.querySelector('[name="profile-info"]');

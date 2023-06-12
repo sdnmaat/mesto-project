@@ -1,30 +1,25 @@
 import './index.css';
-import {openPopup, closePopup, popupEdit, submitProfileForm, closeEsc, closeOverlay, nameProfileInput, profileInfo, profileName, jobProfileInput} from './components/modal.js'
+import {openPopup, closePopup, popupEdit, submitProfileForm, closeEsc, nameProfileInput, profileInfo, profileName, jobProfileInput} from './components/modal.js'
 import { submitFormPlace, popupNewPlace, popupPicture } from './components/card.js';
 import { enableValidation } from './components/validate.js';
 
 const popupProfileOpenButton = document.querySelector('.profile__edit-button');
+const popups = document.querySelectorAll('.popup')
 
-
-popupEdit.addEventListener('click', function(evt) {
-  closeOverlay(popupEdit, evt);
-});
-popupNewPlace.addEventListener('click', function(evt) {
-  closeOverlay(popupNewPlace, evt);
-});
-popupPicture.addEventListener('click', function(evt) {
-  closeOverlay(popupPicture, evt);
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+    })
 });
 
-popupEdit.addEventListener('keydown', function(evt) {
-  closeEsc(popupEdit, evt);
-})
-popupNewPlace.addEventListener('keydown', function(evt) {
-  closeEsc(popupNewPlace, evt);
-});
-popupPicture.addEventListener('keydown', function(evt) {
-  closeEsc(popupPicture, evt);
-});
+popupEdit.addEventListener('keydown', closeEsc);
+popupEdit.removeEventListener('keydown', closeEsc);
+popupNewPlace.addEventListener('keydown', closeEsc);
+popupNewPlace.removeEventListener('keydown', closeEsc);
+popupPicture.addEventListener('keydown', closeEsc);
+popupPicture.removeEventListener('keydown', closeEsc);
 
 popupProfileOpenButton.addEventListener('click', function(evt) {
   openPopup(popupEdit);
@@ -40,7 +35,12 @@ const formProfileElement = document.querySelector('[name="edit-profile"]');
 formProfileElement.addEventListener('submit', submitProfileForm);
 
 const popupAddNewPostButton = document.querySelector('.profile__add-button');
-popupAddNewPostButton.addEventListener('click', function (evt) {openPopup(popupNewPlace);});
+const buttonSave = document.querySelector('.popup__button');
+popupAddNewPostButton.addEventListener('click', function (evt) {
+  openPopup(popupNewPlace);
+  buttonSave.disabled = true;
+  buttonSave.classList.add('.popup__button_inactive');
+});
   
 const popupAddNewPostCloseButton = document.querySelector('#popup-close-button-new-place');
 popupAddNewPostCloseButton.addEventListener('click', function (evt) {closePopup(popupNewPlace);});
@@ -51,4 +51,12 @@ formPlace.addEventListener('submit', submitFormPlace);
 const popupPictureCloseButton = document.querySelector('#popup-close-button-picture');
 popupPictureCloseButton.addEventListener('click', function(evt){closePopup(popupPicture);});
 
-enableValidation();
+
+enableValidation({
+  formSelector: '.popup__info',
+  inputSelector: '.popup__text-field',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_inactive',
+  inputErrorClass: 'popup__text-field_type_error',
+  errorClass: 'popup__input-error_active'
+});

@@ -1,18 +1,18 @@
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, config) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__text-field_type_error');
+    inputElement.classList.add(config.inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__input-error_active');
+    errorElement.classList.add(config.errorClass);
   };
   
-  const hideInputError = (formElement, inputElement) => {
+  const hideInputError = (formElement, inputElement, config) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__text-field_type_error');
-    errorElement.classList.remove('popup__input-error_active');
+    inputElement.classList.remove(config.inputErrorClass);
+    errorElement.classList.remove(config.errorClass);
     errorElement.textContent = '';
   };
   
-  const checkInputValidity = (formElement, inputElement) => {
+  const checkInputValidity = (formElement, inputElement, config) => {
     if (inputElement.validity.valueMissing) {
     inputElement.setCustomValidity("Вы пропустили это поле.");
     } else if (inputElement.validity.patternMismatch) {
@@ -21,44 +21,44 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     inputElement.setCustomValidity("");
     }
     if (!inputElement.validity.valid) {
-      showInputError(formElement, inputElement, inputElement.validationMessage);
+      showInputError(formElement, inputElement, inputElement.validationMessage, config);
     } else {
-      hideInputError(formElement, inputElement);
+      hideInputError(formElement, inputElement, config);
     }
   };
   
-  const toggleButtonState = (inputList, buttonElement) => {
+  const toggleButtonState = (inputList, submitButtonSelector, config) => {
     if (hasInvalidInput(inputList)) {
-      buttonElement.classList.add('popup__button_inactive');
-      buttonElement.disabled = true;
+      submitButtonSelector.classList.add(config.inactiveButtonClass);
+      submitButtonSelector.disabled = true;
     } else {
-      buttonElement.classList.remove('popup__button_inactive');
-      buttonElement.disabled = false;
+      submitButtonSelector.classList.remove(config.inactiveButtonClass);
+      submitButtonSelector.disabled = false;
     }
   }
   
   
-  const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__text-field'));
-    const buttonElement = formElement.querySelector('.popup__button');
-    toggleButtonState(inputList, buttonElement);
+  const setEventListeners = (formElement, config) => {
+    const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+    const buttonElement = formElement.querySelector(config.submitButtonSelector);
+    toggleButtonState(inputList, buttonElement, config);
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', function () {
-        checkInputValidity(formElement, inputElement);
-        toggleButtonState(inputList, buttonElement);
+        checkInputValidity(formElement, inputElement, config);
+        toggleButtonState(inputList, buttonElement, config);
       });
     });
   };
   
-  export const enableValidation = () => {
+  export const enableValidation = (config) => {
     const formList = Array.from(document.querySelectorAll('.popup'));
     formList.forEach((formElement) => {
       formElement.addEventListener('submit', function (evt) {
         evt.preventDefault();
       });
-      const fieldsetList = Array.from(formElement.querySelectorAll('.popup__info'));
+      const fieldsetList = Array.from(formElement.querySelectorAll(config.formSelector));
       fieldsetList.forEach((fieldSet) => {
-        setEventListeners(fieldSet);
+        setEventListeners(fieldSet, config);
       });
     });
   };
@@ -67,5 +67,4 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     })
-  }
-  
+  };
