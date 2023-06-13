@@ -1,5 +1,5 @@
 import './index.css';
-import {openPopup, closePopup, popupEdit, submitProfileForm, closeEsc, nameProfileInput, profileInfo, profileName, jobProfileInput} from './components/modal.js'
+import {openPopup, closePopup, popupEdit, submitProfileForm, nameProfileInput, profileInfo, profileName, jobProfileInput} from './components/modal.js'
 import { submitFormPlace, popupNewPlace, popupPicture } from './components/card.js';
 import { enableValidation } from './components/validate.js';
 
@@ -13,13 +13,6 @@ popups.forEach((popup) => {
         }
     })
 });
-
-popupEdit.addEventListener('keydown', closeEsc);
-popupEdit.removeEventListener('keydown', closeEsc);
-popupNewPlace.addEventListener('keydown', closeEsc);
-popupNewPlace.removeEventListener('keydown', closeEsc);
-popupPicture.addEventListener('keydown', closeEsc);
-popupPicture.removeEventListener('keydown', closeEsc);
 
 popupProfileOpenButton.addEventListener('click', function(evt) {
   openPopup(popupEdit);

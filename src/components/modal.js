@@ -1,17 +1,16 @@
-
-
 export function openPopup(popup) {
   popup.classList.add('popup_opened');
-} 
+  document.addEventListener('keydown', closeByEsc);
+};
 export function closePopup(popup) {
   popup.classList.remove('popup_opened');
-} 
-
-export function closeEsc(evt) {
-    if (evt.key === 'Escape') {
-    const popup = document.querySelector('.popup__opened');
-    closePopup(popup);
-    }
+  document.removeEventListener('keydown', closeByEsc);
+};
+function closeByEsc(evt) {
+  if (evt.key === 'Escape') {
+  const popupOpened = document.querySelector('.popup_opened');
+  closePopup(popupOpened);
+  }
 };
 
 export const jobProfileInput = document.querySelector('[name="profile-info"]');
