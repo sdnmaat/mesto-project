@@ -18,28 +18,45 @@ function closeByEsc(evt) {
   }
 };
 
-export function loadingInfo (evt) {
+export function loadingInfo (evt, isLoading) {
   const submitButton = evt.target.querySelector('.popup__button')
+  if (isLoading) {
   submitButton.textContent = 'Сохранение...';
+  } else {
+    submitButton.textContent = 'Сохранить';
+  }
 }
 
 export function submitProfileForm (evt) {
-  loadingInfo(evt);
+  loadingInfo(evt, true);
   evt.preventDefault();
-  profileInfo.textContent = jobProfileInput.value;
-  profileName.textContent = nameProfileInput.value;
   changeProfile(profileName.textContent, profileInfo.textContent)
+  .then (() => {
+    profileInfo.textContent = jobProfileInput.value;
+    profileName.textContent = nameProfileInput.value;
+    closePopup(popupEdit);
+  })
   .catch((err) => {
     console.log(err);
-  });
-  closePopup(popupEdit);
+  })
+  .finally(() => {
+    loadingInfo(evt, false)
+  })
 };
 
 export function submitChangeAvatar (evt) {
-  loadingInfo(evt);
   evt.preventDefault();
-  changeAvatarServer(avatarLinkInput.value);
-  avatarUser.src = avatarLinkInput.value;
-  closePopup(popupAvatarChange);
-  evt.target.reset()
+  loadingInfo(evt, true);
+  changeAvatarServer(avatarLinkInput.value)
+  .then(() => {
+    avatarUser.src = avatarLinkInput.value;
+    closePopup(popupAvatarChange);
+    evt.target.reset()
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+  .finally(() => {
+    loadingInfo(evt, false)
+  })
 }

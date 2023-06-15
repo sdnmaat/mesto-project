@@ -1,9 +1,10 @@
 import './index.css';
-import {openPopup, closePopup, submitProfileForm, submitChangeAvatar} from './components/modal.js'
-import { submitFormPlace } from './components/card.js';
-import { popupNewPlace, popupPicture, formAvatarChange, avatarChange, popupAvatarChange, buttonCloseAvaPopup, popupEdit, nameProfileInput, profileInfo, profileName, jobProfileInput, popupProfileOpenButton, popups, popupPictureCloseButton, formPlace, popupAddNewPostCloseButton, popupAddNewPostButton, buttonSave, formProfileElement, avatarUser, popupProfileCloseButton } from './components/constants';
+import {openPopup, closePopup, submitProfileForm, submitChangeAvatar, loadingInfo} from './components/modal.js'
+import { renderCard, createCard, deleteTrashIcon, changeLike } from './components/card.js';
+import { popupNewPlace, popupPicture, placeNameInput, linkInput, cardContainer, formAvatarChange, avatarChange, popupAvatarChange, buttonCloseAvaPopup, popupEdit, nameProfileInput, profileInfo, profileName, jobProfileInput, popupProfileOpenButton, popups, popupPictureCloseButton, formPlace, popupAddNewPostCloseButton, popupAddNewPostButton, buttonSave, formProfileElement, avatarUser, popupProfileCloseButton } from './components/constants';
 import { enableValidation } from './components/validate.js';
-import { getUserInfo } from './components/api.js';
+import { getUserInfo, getInitialCards, addNewCard, dislikeCard, likeCard } from './components/api.js';
+import { disablingButton } from './components/utils';
 
 popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
@@ -25,6 +26,7 @@ formAvatarChange.addEventListener('submit', submitChangeAvatar)
 
 popupProfileOpenButton.addEventListener('click', function(evt) {
   openPopup(popupEdit);
+  disablingButton(popupEdit);
   nameProfileInput.value = profileName.innerText;
   jobProfileInput.value = profileInfo.innerText;
 });
@@ -35,6 +37,7 @@ formProfileElement.addEventListener('submit', submitProfileForm);
 
 popupAddNewPostButton.addEventListener('click', function (evt) {
   openPopup(popupNewPlace);
+  disablingButton(popupNewPlace);
   buttonSave.disabled = true;
   buttonSave.classList.add('.popup__button_inactive');
 });
@@ -54,12 +57,45 @@ enableValidation({
   errorClass: 'popup__input-error_active'
 });
 
-getUserInfo()
-.then ((data) => {
-  profileName.textContent = data.name;
-  profileInfo.textContent = data.about;
-  avatarUser.src = data.avatar;
-})
-.catch((err) => {
-  console.log(err);
-});
+Promise.all([getUserInfo(), getInitialCards()])
+  .then(([info, cardsArray]) => {
+    profileName.textContent = info.name;
+    profileInfo.textContent = info.about;
+    avatarUser.src = info.avatar;
+    cardsArray.forEach(function(element){
+      renderCard(createCard(element),cardContainer);
+      deleteTrashIcon(element.owner._id, info._id);
+      });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+  function submitFormPlace (evt) {
+      evt.preventDefault();
+      loadingInfo(evt, true);
+      addNewCard(placeNameInput.value,linkInput.value)
+      .then ((res) => {
+        renderCard(createCard(res),cardContainer);
+        closePopup(popupNewPlace);
+        evt.target.reset()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        loadingInfo(evt, false)
+      })
+      }
+
+export function handleLikeCard(status, cardId, evt, counter) {
+  if(!status) {
+    likeCard(cardId)
+    .then((likes) => {changeLike(evt, likes, counter)})
+    .catch((err)=>{console.log(err)})
+  } else {
+    dislikeCard(cardId)
+    .then((likes) => {changeLike(evt, likes, counter)})
+    .catch((err) => {console.log(err)})
+  }
+}

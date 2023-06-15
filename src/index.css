@@ -46,3 +46,4 @@
 @import url('../blocks/card/__likes-counter/card__likes-counter.css');
 @import url('../blocks/profile/__img/_overlay/profile__img_overlay.css');
 @import url('../blocks/popup/__container/_s-height/popup__container_s-height.css');
+@import url('../blocks/popup/_overlay/popup_overlay.css');
