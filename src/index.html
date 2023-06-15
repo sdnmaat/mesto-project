@@ -14,6 +14,8 @@
     <main>
       <section class="profile">
         <img src="<%=require('../img/Avatar.png')%>" alt="фото автора" class="profile__img">
+        <div class="profile__img_overlay">
+        </div>
         <div class="profile__text-box">
           <div class="profile__name-edit">
             <h1 class="profile__name">
@@ -53,7 +55,7 @@
             </button>
           </fieldset>
         </form> 
-        <button class="popup__close-button" type="button" id="profile-close-button">
+        <button class="popup__close-button popup__close" type="button" id="profile-close-button">
           <img src="<%=require('../img/CloseIcon.svg')%>" alt="крестик" class="popup__icon">
         </button>
       </div>
@@ -72,7 +74,24 @@
             </button>
           </fieldset>
         </form> 
-        <button class="popup__close-button" id="popup-close-button-new-place" type="button">
+        <button class="popup__close-button popup__close" id="popup-close-button-new-place" type="button">
+          <img src="<%=require('../img/CloseIcon.svg')%>" alt="крестик" class="popup__icon">
+        </button>
+      </div>
+    </section>
+    <section class="popup" id="popup-edit-ava">
+      <div class="popup__container popup__container_s-height">
+        <form name="edit-ava">
+          <fieldset class="popup__info">
+            <h2 class="popup__text">Обновить аватар</h2>
+            <input id="ava-link-input" class="popup__text-field" name="place-ava-link" type="url" placeholder="Ссылка на картинку" required>
+            <span class="ava-link-input-error popup__input-error">Вы пропустили это поле.</span>
+            <button class="popup__button" type="submit">
+              Сохранить
+            </button>
+          </fieldset>
+        </form> 
+        <button class="popup__close-button popup__close" id="popup-close-button-ava-change" type="button">
           <img src="<%=require('../img/CloseIcon.svg')%>" alt="крестик" class="popup__icon">
         </button>
       </div>
@@ -80,7 +99,7 @@
     <section class="popup" id="popup-picture">
       <div class="popup__picture-box">
         <img class="popup__picture" src="" alt="">
-        <button class="popup__close-button-picture" id="popup-close-button-picture" type="button">
+        <button class="popup__close-button-picture popup__close" id="popup-close-button-picture" type="button">
           <img src="<%=require('../img/CloseIcon.svg')%>" alt="крестик" class="popup__icon">
         </button>
         <p class="popup__text-picture"></p>
@@ -94,9 +113,12 @@
         <img src="" class="card__img" alt="">
         <div class="card__text-box">
           <h2 class="card__text"></h2>
-          <button class="card__button" type="button">
-            <div class="card__heart"></div>
-          </button>
+          <div class="card__likes-container">
+            <button class="card__button" type="button">
+              <div class="card__heart"></div>
+            </button>
+            <span class="card__likes-counter">0</span>
+          </div>  
         </div>
       </article>
     </template>

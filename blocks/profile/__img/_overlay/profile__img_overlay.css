@@ -1,0 +1,16 @@
+.profile__img_overlay { 
+ position: absolute;
+ background-color: rgba(0, 0, 0, 0.8);
+ background-image: url('../../../../img/editavatar.svg');
+ background-repeat: no-repeat;
+ background-position: center;
+ border-radius: 50%;
+ width: 120px;
+ height: 120px;
+ opacity: 0;
+ transition: opacity 0.3s linear;
+}
+
+.profile__img_overlay:hover {
+    opacity: 1;
+}

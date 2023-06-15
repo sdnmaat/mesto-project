@@ -1,0 +1,27 @@
+export const cardContainer = document.querySelector('.cards');
+export const placeNameInput = document.querySelector('[name="place-name"]');
+export const linkInput = document.querySelector('[name="place-link"]');
+export const popupNewPlace = document.querySelector('#popup-new-place');
+export const popupPicture = document.querySelector('#popup-picture');
+export const fullImg = document.querySelector('.popup__picture');
+export const textImg = document.querySelector('.popup__text-picture');
+export const popupProfileOpenButton = document.querySelector('.profile__edit-button');
+export const popups = document.querySelectorAll('.popup')
+export const avatarUser = document.querySelector('.profile__img')
+export const popupProfileCloseButton = document.querySelector('#profile-close-button');
+export const formProfileElement = document.querySelector('[name="edit-profile"]');
+export const popupAddNewPostButton = document.querySelector('.profile__add-button');
+export const buttonSave = document.querySelector('.popup__button');
+export const popupAddNewPostCloseButton = document.querySelector('#popup-close-button-new-place');
+export const formPlace = document.querySelector('[name="new-place"]');
+export const popupPictureCloseButton = document.querySelector('#popup-close-button-picture');
+export const jobProfileInput = document.querySelector('[name="profile-info"]');
+export const profileInfo = document.querySelector('.profile__info');
+export const profileName = document.querySelector('.profile__name');
+export const nameProfileInput= document.querySelector('[name="profile-name"]');
+export const popupEdit = document.querySelector('#popup-edit-profile');
+export const popupAvatarChange = document.querySelector('#popup-edit-ava');
+export const avatarChange = document.querySelector('.profile__img_overlay')
+export const buttonCloseAvaPopup = document.querySelector('#popup-close-button-ava-change');;
+export const avatarLinkInput = document.querySelector('[name="place-ava-link"]');
+export const formAvatarChange = document.querySelector('[name="edit-ava"]');

@@ -1,10 +1,9 @@
 import './index.css';
-import {openPopup, closePopup, popupEdit, submitProfileForm, nameProfileInput, profileInfo, profileName, jobProfileInput} from './components/modal.js'
-import { submitFormPlace, popupNewPlace, popupPicture } from './components/card.js';
+import {openPopup, closePopup, submitProfileForm, submitChangeAvatar} from './components/modal.js'
+import { submitFormPlace } from './components/card.js';
+import { popupNewPlace, popupPicture, formAvatarChange, avatarChange, popupAvatarChange, buttonCloseAvaPopup, popupEdit, nameProfileInput, profileInfo, profileName, jobProfileInput, popupProfileOpenButton, popups, popupPictureCloseButton, formPlace, popupAddNewPostCloseButton, popupAddNewPostButton, buttonSave, formProfileElement, avatarUser, popupProfileCloseButton } from './components/constants';
 import { enableValidation } from './components/validate.js';
-
-const popupProfileOpenButton = document.querySelector('.profile__edit-button');
-const popups = document.querySelectorAll('.popup')
+import { getUserInfo } from './components/api.js';
 
 popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
@@ -14,36 +13,37 @@ popups.forEach((popup) => {
     })
 });
 
+avatarChange.addEventListener('click', function(evt) {
+  openPopup(popupAvatarChange);
+});
+
+buttonCloseAvaPopup.addEventListener('click', function(evt) {
+  closePopup(popupAvatarChange);
+})
+
+formAvatarChange.addEventListener('submit', submitChangeAvatar)
+
 popupProfileOpenButton.addEventListener('click', function(evt) {
   openPopup(popupEdit);
   nameProfileInput.value = profileName.innerText;
   jobProfileInput.value = profileInfo.innerText;
 });
 
-  
-const popupProfileCloseButton = document.querySelector('#profile-close-button');
 popupProfileCloseButton.addEventListener('click', function(evt) {closePopup(popupEdit);});
-  
-const formProfileElement = document.querySelector('[name="edit-profile"]');
+
 formProfileElement.addEventListener('submit', submitProfileForm);
 
-const popupAddNewPostButton = document.querySelector('.profile__add-button');
-const buttonSave = document.querySelector('.popup__button');
 popupAddNewPostButton.addEventListener('click', function (evt) {
   openPopup(popupNewPlace);
   buttonSave.disabled = true;
   buttonSave.classList.add('.popup__button_inactive');
 });
   
-const popupAddNewPostCloseButton = document.querySelector('#popup-close-button-new-place');
 popupAddNewPostCloseButton.addEventListener('click', function (evt) {closePopup(popupNewPlace);});
-  
-const formPlace = document.querySelector('[name="new-place"]');
-formPlace.addEventListener('submit', submitFormPlace);
-  
-const popupPictureCloseButton = document.querySelector('#popup-close-button-picture');
-popupPictureCloseButton.addEventListener('click', function(evt){closePopup(popupPicture);});
 
+formPlace.addEventListener('submit', submitFormPlace);
+
+popupPictureCloseButton.addEventListener('click', function(evt){closePopup(popupPicture);});
 
 enableValidation({
   formSelector: '.popup__info',
@@ -52,4 +52,14 @@ enableValidation({
   inactiveButtonClass: 'popup__button_inactive',
   inputErrorClass: 'popup__text-field_type_error',
   errorClass: 'popup__input-error_active'
+});
+
+getUserInfo()
+.then ((data) => {
+  profileName.textContent = data.name;
+  profileInfo.textContent = data.about;
+  avatarUser.src = data.avatar;
+})
+.catch((err) => {
+  console.log(err);
 });
