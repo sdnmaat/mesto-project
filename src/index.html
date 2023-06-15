@@ -41,7 +41,7 @@
         &copy; 2023 Mesto Russia
       </p>
     </footer>
-    <section class="popup" id="popup-edit-profile">
+    <div class="popup" id="popup-edit-profile">
       <div class="popup__container">
         <form name="edit-profile">
           <fieldset class="popup__info">
@@ -59,8 +59,8 @@
           <img src="<%=require('../img/CloseIcon.svg')%>" alt="крестик" class="popup__icon">
         </button>
       </div>
-    </section>
-    <section class="popup" id="popup-new-place">
+    </div>
+    <div class="popup" id="popup-new-place">
       <div class="popup__container">
         <form name="new-place">
           <fieldset class="popup__info">
@@ -78,8 +78,8 @@
           <img src="<%=require('../img/CloseIcon.svg')%>" alt="крестик" class="popup__icon">
         </button>
       </div>
-    </section>
-    <section class="popup" id="popup-edit-ava">
+    </div>
+    <div class="popup" id="popup-edit-ava">
       <div class="popup__container popup__container_s-height">
         <form name="edit-ava">
           <fieldset class="popup__info">
@@ -95,8 +95,8 @@
           <img src="<%=require('../img/CloseIcon.svg')%>" alt="крестик" class="popup__icon">
         </button>
       </div>
-    </section>
-    <section class="popup popup_overlay" id="popup-picture">
+    </div>
+    <div class="popup popup_overlay" id="popup-picture">
       <div class="popup__picture-box">
         <img class="popup__picture" src="" alt="">
         <button class="popup__close-button-picture popup__close" id="popup-close-button-picture" type="button">
@@ -104,7 +104,7 @@
         </button>
         <p class="popup__text-picture"></p>
       </div>
-    </section>
+    </div>
     <template id="card-template">
       <article class="card">
         <button class="card__delete-button" type="button">
