@@ -36,6 +36,10 @@ function deleteCard (evt, id) {
 export function renderCard(card, container) {
     container.append(card);
   } 
+
+export function renderNewCard(card, container) {
+  container.prepend(card);
+}
     
 export function deleteTrashIcon (elementId, userId) {
     if (elementId != userId) {

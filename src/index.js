@@ -1,6 +1,6 @@
 import './index.css';
 import {openPopup, closePopup, submitProfileForm, submitChangeAvatar, loadingInfo} from './components/modal.js'
-import { renderCard, createCard, deleteTrashIcon, changeLike } from './components/card.js';
+import { renderCard, createCard, deleteTrashIcon, changeLike, renderNewCard } from './components/card.js';
 import { popupNewPlace, popupPicture, fullImg, textImg, placeNameInput, linkInput, cardContainer, formAvatarChange, avatarChange, popupAvatarChange, buttonCloseAvaPopup, popupEdit, nameProfileInput, profileInfo, profileName, jobProfileInput, popupProfileOpenButton, popups, popupPictureCloseButton, formPlace, popupAddNewPostCloseButton, popupAddNewPostButton, buttonSave, formProfileElement, avatarUser, popupProfileCloseButton } from './components/constants';
 import { enableValidation } from './components/validate.js';
 import { getUserInfo, getInitialCards, addNewCard, dislikeCard, likeCard } from './components/api.js';
@@ -76,7 +76,7 @@ Promise.all([getUserInfo(), getInitialCards()])
       loadingInfo(evt, true);
       addNewCard(placeNameInput.value,linkInput.value)
       .then ((res) => {
-        renderCard(createCard(res),cardContainer);
+        renderNewCard(createCard(res),cardContainer);
         closePopup(popupNewPlace);
         evt.target.reset()
       })
