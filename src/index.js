@@ -1,7 +1,7 @@
 import './index.css';
 import {openPopup, closePopup, submitProfileForm, submitChangeAvatar, loadingInfo} from './components/modal.js'
 import { renderCard, createCard, deleteTrashIcon, changeLike } from './components/card.js';
-import { popupNewPlace, popupPicture, placeNameInput, linkInput, cardContainer, formAvatarChange, avatarChange, popupAvatarChange, buttonCloseAvaPopup, popupEdit, nameProfileInput, profileInfo, profileName, jobProfileInput, popupProfileOpenButton, popups, popupPictureCloseButton, formPlace, popupAddNewPostCloseButton, popupAddNewPostButton, buttonSave, formProfileElement, avatarUser, popupProfileCloseButton } from './components/constants';
+import { popupNewPlace, popupPicture, fullImg, textImg, placeNameInput, linkInput, cardContainer, formAvatarChange, avatarChange, popupAvatarChange, buttonCloseAvaPopup, popupEdit, nameProfileInput, profileInfo, profileName, jobProfileInput, popupProfileOpenButton, popups, popupPictureCloseButton, formPlace, popupAddNewPostCloseButton, popupAddNewPostButton, buttonSave, formProfileElement, avatarUser, popupProfileCloseButton } from './components/constants';
 import { enableValidation } from './components/validate.js';
 import { getUserInfo, getInitialCards, addNewCard, dislikeCard, likeCard } from './components/api.js';
 import { disablingButton } from './components/utils';
@@ -98,4 +98,11 @@ export function handleLikeCard(status, cardId, evt, counter) {
     .then((likes) => {changeLike(evt, likes, counter)})
     .catch((err) => {console.log(err)})
   }
+}
+
+export function openIllustration (card) {
+  fullImg.src = card.link;
+  fullImg.alt = card.name;
+  textImg.textContent = card.name;
+  openPopup(popupPicture);
 }

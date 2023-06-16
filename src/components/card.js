@@ -1,7 +1,5 @@
-import { openPopup } from "./modal.js";
-import { deleteCardFromServer, dislikeCard, likeCard } from "./api.js";
-import { popupPicture, fullImg, textImg } from "./constants.js";
-import { handleLikeCard } from "../index.js";
+import { deleteCardFromServer } from "./api.js";
+import { handleLikeCard, openIllustration } from "../index.js";
 
 export function createCard (card) {
 const cardTemplate = document.querySelector('#card-template').content;
@@ -36,14 +34,13 @@ function deleteCard (evt, id) {
 };
 
 export function renderCard(card, container) {
-    container.prepend(card);
+    container.append(card);
   } 
     
 export function deleteTrashIcon (elementId, userId) {
     if (elementId != userId) {
-    const card = document.querySelector('.card');
     const buttonDelete = document.querySelector('.card__delete-button');
-    card.removeChild(buttonDelete);
+    buttonDelete.remove();
   }
 }
 
@@ -56,11 +53,4 @@ export function checkStatusLike (evt) {
 export function changeLike(evt, likes, counter) {
   evt.target.classList.toggle('card__heart_active');
   counter.textContent = likes.length;
-}
-
-function openIllustration (card) {
-  fullImg.src = card.link;
-  fullImg.alt = card.name;
-  textImg.textContent = card.name;
-  openPopup(popupPicture);
 }
